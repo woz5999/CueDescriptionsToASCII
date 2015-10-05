@@ -10,7 +10,7 @@ type CueList struct {
 
 func (cueList CueList) ConvertCues() (string, error) {
 	var err error
-	ret := "Ident 3:0\r\nClear Cues\r\n"
+	ret := "Ident 3:0\r\n"
 
 	if cueList.Cues != nil {
 		for i := range cueList.Cues {
