@@ -1,4 +1,3 @@
-// Cues
 package cues
 
 import (
@@ -21,6 +20,7 @@ func (cue Cue) ConvertToAscii() (string, error) {
 	page := cue.Record[tmpl["page"]]
 	time := cue.Record[tmpl["time"]]
 	link := cue.Record[tmpl["link"]]
+	follow := cue.Record[tmpl["follow"]]
 
 	if _, ok := tmpl["cue"]; ok && cueNum != "" {
 		cueNum, err = getCueNum(cueNum)
@@ -28,15 +28,18 @@ func (cue Cue) ConvertToAscii() (string, error) {
 			return "", err
 		}
 
-		ret += cueNum
+		ret += trim(cueNum)
 
 		if _, ok := tmpl["text"]; ok && text != "" {
+
 			if page != "" {
 				//if a page is specified, append it to the description
-				ret += "Text " + text + " Pg: " + page + "\r\n"
+				text = "Text " + text + " Pg: " + page + "\r\n"
 			} else {
-				ret += "Text " + text + "\r\n"
+				text = "Text " + text + "\r\n"
 			}
+
+			ret += trim(text)
 		}
 
 		if _, ok := tmpl["time"]; ok && time != "" {
@@ -48,7 +51,11 @@ func (cue Cue) ConvertToAscii() (string, error) {
 		}
 
 		if _, ok := tmpl["link"]; ok && link != "" {
-			ret += "Link " + link + "\r\n"
+			ret += trim("Link " + link + "\r\n")
+		}
+
+		if _, ok := tmpl["follow"]; ok && follow != "" {
+			ret += trim("Followon " + follow + "\r\n")
 		}
 	}
 
@@ -82,20 +89,33 @@ func formatTime(time string) (string, error) {
 		time = strings.ToLower(time)
 		if strings.Contains(time, "f") {
 			res := strings.Split(time, "f")
-			ret += "Followon " + res[1] + "\r\n"
+			ret += trim("Followon " + res[1] + "\r\n")
 			time = res[0]
 		}
 
 		if strings.Contains(time, "/") {
 			res := strings.Split(time, "/")
-			ret += "Up " + res[0] + "\r\n"
-			ret += "Down " + res[1] + "\r\n"
+			ret += trim("Up " + res[0] + "\r\n")
+			ret += trim("Down " + res[1] + "\r\n")
 
+		} else if strings.Contains(time, "\\") {
+			res := strings.Split(time, "\\")
+			ret += trim("Up " + res[0] + "\r\n")
+			ret += trim("Down " + res[1] + "\r\n")
 		} else {
-			ret += "Up " + time + "\r\n"
+			ret += trim("Up " + time + "\r\n")
 		}
 	} else {
 		err = errors.New("Invalid time specified")
 	}
 	return ret, err
+}
+
+func trim(line string) string {
+	//USITT ASCII only supports commands that are less than 80 characters long
+	if len(line) > 80 {
+		line = line[0:79]
+	}
+
+	return line
 }
