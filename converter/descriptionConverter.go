@@ -3,7 +3,7 @@ package converter
 import (
 	"encoding/csv"
 	"errors"
-	"github.com/woz5999/descriptionConverter/cues"
+	"github.com/woz5999/CueDescriptionsToASCII/cues"
 	"io"
 	"io/ioutil"
 	"mime/multipart"

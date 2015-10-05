@@ -3,7 +3,7 @@ package main
 import (
 	//"converter"
 	"fmt"
-	"github.com/woz5999/descriptionConverter/converter"
+	"github.com/woz5999/CueDescriptionsToASCII/converter"
 	"log"
 	"net/http"
 )
