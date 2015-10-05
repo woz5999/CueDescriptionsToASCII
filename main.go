@@ -14,7 +14,13 @@ func main() {
 	port := ":80"
 
 	http.HandleFunc(dc.GetPath(), dc.WebPost)
+	http.HandleFunc("/", home)
 
 	fmt.Println("Server started on localhost" + port)
 	log.Fatal(http.ListenAndServe(port, nil))
+}
+
+func home(w http.ResponseWriter,
+	req *http.Request) {
+	http.ServeFile(w, req, "converter.html")
 }
