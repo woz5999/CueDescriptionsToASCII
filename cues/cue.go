@@ -20,6 +20,7 @@ func (cue Cue) ConvertToAscii() (string, error) {
 	page := cue.Record[tmpl["page"]]
 	time := cue.Record[tmpl["time"]]
 	link := cue.Record[tmpl["link"]]
+	flags := cue.Record[tmpl["flags"]]
 	follow := cue.Record[tmpl["follow"]]
 
 	if _, ok := tmpl["cue"]; ok && cueNum != "" {
@@ -57,6 +58,10 @@ func (cue Cue) ConvertToAscii() (string, error) {
 		if _, ok := tmpl["follow"]; ok && follow != "" {
 			ret += trim("Followon " + follow + "\r\n")
 		}
+
+		//		if _, ok := tmpl[flags]; ok && flags != "" && strings.Contains(strings.ToLower(flags), "b") {
+		//			ret += trim("$$Block\r\n")
+		//		}
 	}
 
 	return ret, err
