@@ -98,7 +98,7 @@ func writeCues(output string, filename string) (string, error) {
 
 	//convert filename to output filename
 	filenameSplit := strings.Split(filename, ".")
-	filenameOut := filenameSplit[0] + ".txt"
+	filenameOut := filenameSplit[0] + ".asc"
 
 	err = ioutil.WriteFile(filenameOut, []byte(output), 0644)
 
