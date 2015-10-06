@@ -15,6 +15,7 @@ func main() {
 
 	http.HandleFunc(dc.GetPath(), dc.WebPost)
 	http.HandleFunc("/", home)
+	http.HandleFunc("/style.css", style)
 
 	fmt.Println("Server started on localhost" + port)
 	log.Fatal(http.ListenAndServe(port, nil))
@@ -22,5 +23,10 @@ func main() {
 
 func home(w http.ResponseWriter,
 	req *http.Request) {
-	http.ServeFile(w, req, "converter.html")
+	http.ServeFile(w, req, "./converter.html")
+}
+
+func style(w http.ResponseWriter,
+	req *http.Request) {
+	http.ServeFile(w, req, "./style.css")
 }

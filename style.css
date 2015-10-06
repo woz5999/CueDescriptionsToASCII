@@ -1,0 +1,39 @@
+.format {
+}
+
+.column {
+	font-weight: bold;
+}
+
+.column-header, .format-header {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.option, .note, .caution {
+	padding-left: 25px;
+}
+
+span.option, span.note, span.caution {
+	font-weight:bold;
+}
+
+.example {
+	font-family: sans-serif;
+	border-style: solid;
+	border-width:1px;
+	margin-left:50px;
+}
+
+span.example {
+	font-family: sans-serif;
+	border-style: none;
+	margin-left:0px;
+	border-width:0px;
+}
+
+.example > div {
+	border-style: dashed;
+	border-width:1px;
+}
+
