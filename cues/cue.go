@@ -61,7 +61,8 @@ func (cue Cue) ConvertToASCII() (string, error) {
 			ret += trim("Followon " + follow + "\r\n")
 		}
 
-		//		if _, ok := tmpl[flags]; ok && flags != "" && strings.Contains(strings.ToLower(flags), "b") {
+		//		if _, ok := tmpl[flags]; ok && flags != "" &&
+		// 				strings.Contains(strings.ToLower(flags), "b") {
 		//			ret += trim("$$Block\r\n")
 		//		}
 	}

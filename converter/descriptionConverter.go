@@ -14,7 +14,9 @@ import (
 type DescriptionConverter struct{}
 
 //ConvertDescriptions ... Main method
-func (dc DescriptionConverter) ConvertDescriptions(file multipart.File, filename string) (string, error) {
+func (dc DescriptionConverter) ConvertDescriptions(
+	file multipart.File, filename string) (string, error) {
+
 	var err error
 
 	cues, err := getCues(file)
