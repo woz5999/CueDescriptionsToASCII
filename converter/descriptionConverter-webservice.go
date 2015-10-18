@@ -6,10 +6,12 @@ import (
 	"os"
 )
 
+//GetPath ... return the url path for this web service
 func (dc DescriptionConverter) GetPath() string {
 	return "/converter"
 }
 
+//WebPost ... handler for POST event
 func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 	req *http.Request) {
 	defer req.Body.Close()

@@ -10,8 +10,10 @@ import (
 	"strings"
 )
 
+//DescriptionConverter ... detault constructor
 type DescriptionConverter struct{}
 
+//ConvertDescriptions ... Main method
 func (dc DescriptionConverter) ConvertDescriptions(file multipart.File, filename string) (string, error) {
 	var err error
 
@@ -84,7 +86,7 @@ func getCues(file multipart.File) (cues.CueList, error) {
 					break
 				}
 			}
-			lineCount += 1
+			lineCount++
 		}
 	} else {
 		err = errors.New("No file specified")

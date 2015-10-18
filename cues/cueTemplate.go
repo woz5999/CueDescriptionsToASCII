@@ -5,10 +5,12 @@ import (
 	"strings"
 )
 
+//CueTemplate ... the resulting cue template
 type CueTemplate struct {
 	Mapping map[string]int
-} //end CueTemplate
+}
 
+//Create ... function to create a cue template from the specified string slice
 func (tmpl CueTemplate) Create(headers []string) (CueTemplate, error) {
 	var err error
 	tmpl.Mapping = make(map[string]int)

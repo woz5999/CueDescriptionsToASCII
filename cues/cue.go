@@ -5,12 +5,14 @@ import (
 	"strings"
 )
 
+//Cue ... cue struct
 type Cue struct {
 	Record   []string
 	Template CueTemplate
-} //end Cue
+}
 
-func (cue Cue) ConvertToAscii() (string, error) {
+//ConvertToASCII ... convert the specified cue to ASCII entry
+func (cue Cue) ConvertToASCII() (string, error) {
 	var ret string
 	var err error
 
@@ -20,7 +22,7 @@ func (cue Cue) ConvertToAscii() (string, error) {
 	page := cue.Record[tmpl["page"]]
 	time := cue.Record[tmpl["time"]]
 	link := cue.Record[tmpl["link"]]
-	flags := cue.Record[tmpl["flags"]]
+	//flags := cue.Record[tmpl["flags"]]
 	follow := cue.Record[tmpl["follow"]]
 
 	if _, ok := tmpl["cue"]; ok && cueNum != "" {
