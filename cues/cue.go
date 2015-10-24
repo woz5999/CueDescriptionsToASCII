@@ -2,6 +2,7 @@ package cues
 
 import (
 	"errors"
+	"log"
 	"strings"
 )
 
@@ -122,7 +123,9 @@ func formatTime(time string) (string, error) {
 func trim(line string) string {
 	//USITT ASCII only supports commands that are less than 80 characters long
 	if len(line) > 80 {
+		log.Println("Truncating line: " + line)
 		line = line[0:79]
+		log.Println(" To: " + line)
 	}
 
 	return line

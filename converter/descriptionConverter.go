@@ -6,6 +6,7 @@ import (
 	"github.com/woz5999/CueDescriptionsToASCII/cues"
 	"io"
 	"io/ioutil"
+	"log"
 	"mime/multipart"
 	"strings"
 )
@@ -18,17 +19,17 @@ func (dc DescriptionConverter) ConvertDescriptions(
 	file multipart.File, filename string) (string, error) {
 
 	var err error
-
+	log.Println("Getting cues")
 	cues, err := getCues(file)
 	if err != nil {
 		return "", err
 	}
-
+	log.Println("Converting cues")
 	ascii, err := cues.ConvertCues()
 	if err != nil {
 		return "", err
 	}
-
+	log.Println("Writing cues")
 	filename, err = writeCues(ascii, filename)
 	if err != nil {
 		return "", err
@@ -51,6 +52,7 @@ func getCues(file multipart.File) (cues.CueList, error) {
 		tmpl := cues.CueTemplate{}
 		lineCount := 0
 		bTmplSet := false
+
 		for {
 			record, err := reader.Read()
 
@@ -59,20 +61,22 @@ func getCues(file multipart.File) (cues.CueList, error) {
 					//load the fields into a map in order to do column detection
 					set := make(map[string]bool)
 					for _, v := range record {
-						set[v] = true
+						key := strings.ToLower(v)
+						set[key] = true
 					}
 
 					//attempt to detect column headers
-					_, lower := set["cue"]
-					_, upper := set["Cue"]
-					if lower || upper {
+					_, cueHeader := set["cue"]
+					if cueHeader {
 						tmpl, err = tmpl.Create(record)
 
 						if err != nil {
+							log.Println("Error creating cue template: " + err.Error())
 							break
+						} else {
+							log.Println("Cue template created")
+							bTmplSet = true
 						}
-
-						bTmplSet = true
 					}
 				} else {
 					//ignore items encountered before template is created
@@ -104,6 +108,7 @@ func writeCues(output string, filename string) (string, error) {
 	filenameSplit := strings.Split(filename, ".")
 	filenameOut := filenameSplit[0] + ".asc"
 
+	log.Println("Writing ascii file " + filenameOut)
 	err = ioutil.WriteFile(filenameOut, []byte(output), 0644)
 
 	return filenameOut, err

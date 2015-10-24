@@ -2,6 +2,7 @@ package cues
 
 import (
 	"errors"
+	"log"
 )
 
 //CueList ... CueList struct
@@ -22,6 +23,7 @@ func (cueList CueList) ConvertCues() (string, error) {
 
 		ret += "EndData"
 	} else {
+		log.Println("No cues provided")
 		err = errors.New("No cues provided")
 	}
 
