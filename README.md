@@ -26,11 +26,11 @@ P1  | Front light  |    | 15     |    |
 ###**Cue**
 **Accepted values:** Any number
 
-**Example:** 1, 1.5, 4.22
+**Example:** `1, 1.5, 4.22`
 
 **Note:** Rows without a Cue entry will be ignored
 ####**Part cues**
-**Optional:** Part cues are defined by P\[part number\] (e.g. P1)
+**Optional:** Part cues are defined by P\[part number\] (e.g. `P1`)
 
 **Note:** Parts are assumed to belong to the closest Cue number preceding them
 #####**Part example:**
@@ -55,7 +55,7 @@ must be less than 70 characters. Excess characters will be truncated.
 ###**Time**
 **Accepted values:** [time]; [up]/[down]; [up]\[down]
 
-**Example:** 3, 4/6, 5\10
+**Example:** `3, 4/6, 5\10`
 
 **Note:** If a single number is specified, it will be used for both up and down times
 
@@ -63,7 +63,7 @@ must be less than 70 characters. Excess characters will be truncated.
 **Optional:** You may also specify cue Follows in this column using the format [time]:
 F[follow time]
 
-**Example:** 4F10, 4/5F10
+**Example:** `4F10, 4/5F10`
 
 **Caution:** This app will accept and output decimal times (e.g. 4.5)
 but only you know if your console supports them. Tread lightly.
