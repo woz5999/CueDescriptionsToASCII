@@ -1,35 +1,40 @@
 .column {
-	font-weight: bold;
+  font-weight: bold;
 }
 
-.column-header, .format-header {
-	font-size: 18px;
-	font-weight: bold;
+.column-header,
+.format-header {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.option, .note, .caution {
-	padding-left: 25px;
+.option,
+.note,
+.caution {
+  padding-left: 25px;
 }
 
-span.option, span.note, span.caution {
-	font-weight:bold;
+span.option,
+span.note,
+span.caution {
+  font-weight: bold;
 }
 
 .example {
-	font-family: sans-serif;
-	border-style: solid;
-	border-width:1px;
-	margin-left:50px;
+  border-style: solid;
+  border-width: 1px;
+  font-family: sans-serif;
+  margin-left: 50px;
 }
 
 span.example {
-	font-family: sans-serif;
-	border-style: none;
-	margin-left:0;
-	border-width:0;
+  border-style: none;
+  border-width: 0;
+  font-family: sans-serif;
+  margin-left: 0;
 }
 
 .example > div {
-	border-style: dashed;
-	border-width:1px;
+  border-style: dashed;
+  border-width: 1px;
 }
