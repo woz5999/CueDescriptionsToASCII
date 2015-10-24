@@ -9,292 +9,299 @@
 	<div class="container">
 		<div class="row">
 			<div class="row">
+				<h1>Cue descriptions to ASCII</h1>
+				<p class="description">
+					This application is designed to convert a spreadsheet of light cue descriptions
+					into USITT ASCII for import into a lighting console. The resulting show file will
+					insert numbered cues, times, follows, and links. The provided cue description
+					will be appended to the console cue text description field.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-12">
-								<p>
-									To convert your cue descriptions, please create a CSV export using your
-									preferred spreadsheeting application and upload it here.
-								</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<form action="./converter" enctype="multipart/form-data" method="post">
-									<input type="file" name="uploadfile" size="40">
-									<input type="submit" value="Convert">
-								</form>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<p>
-									Column name detection is case in-sensitive.
-									<br/>
-									The order of columns does not matter.
-									<br/>
-									Columns not described here will be ignored.
-									<br/>
-									Column format specifications are below.
-									<br/>
-									You should clear your existing console cues before attempting to
-									 import a generated show; the generated file will not clear them for you.
-									<br/>
-									Because most
-									spreadsheet applications do not allow you to export multiple sheets into
-									 a single CSV file, users utilizing multiple sheets will need to upload each
-									  sheet individually.
-								</p>
-							</div>
-						</div>
+						<p>
+							To convert your cue descriptions, please create a CSV export using your
+							preferred spreadsheeting application and upload it here.
+						</p>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<form action="./converter" enctype="multipart/form-data" method="post">
+							<input type="file" name="uploadfile" size="40">
+							<input type="submit" value="Convert">
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<p>
+							Column name detection is case in-sensitive.
+							<br/>
+							The order of columns does not matter.
+							<br/>
+							Columns not described here will be ignored.
+							<br/>
+							Column format specifications are below.
+							<br/>
+							You should clear your existing console cues before attempting to
+							 import a generated show; the generated file will not clear them for you.
+							<br/>
+							Because most
+							spreadsheet applications do not allow you to export multiple sheets into
+							 a single CSV file, users utilizing multiple sheets will need to upload each
+							  sheet individually.
+						</p>
+					</div>
+				</div>
+			</div>
 
+			<div class="row">
+				<span class="column-header">Example spreadsheet</span>
+				<div class="col-sm-12 example">
 					<div class="row">
-						<span class="column-header">Example spreadsheet</span>
-						<div class="col-sm-12 example">
-							<div class="row">
-								<div class="col-sm-2 column">
-									Cue
-								</div>
-								<div class="col-sm-2 column">
-									Description
-								</div>
-								<div class="col-sm-2 column">
-									Pg
-								</div>
-								<div class="col-sm-2 column">
-									Time
-								</div>
-								<div class="col-sm-2 column">
-									Follow
-								</div>
-								<div class="col-sm-2 column">
-									Link
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									1
-								</div>
-								<div class="col-sm-2">
-									House Lights
-								</div>
-								<div class="col-sm-2">
-									1
-								</div>
-								<div class="col-sm-2">
-									3
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									1
-								</div>
-								<div class="col-sm-2">
-									House at half
-								</div>
-								<div class="col-sm-2">
-
-								</div>
-								<div class="col-sm-2">
-									5
-								</div>
-								<div class="col-sm-2">
-									10
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									1.5
-								</div>
-								<div class="col-sm-2">
-									Blackout
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									3/5F10
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									2
-								</div>
-								<div class="col-sm-2">
-									Top of show
-								</div>
-								<div class="col-sm-2">
-									1
-								</div>
-								<div class="col-sm-2">
-									5/10
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									3
-								</div>
-								<div class="col-sm-2">
-									Spooky look
-								</div>
-								<div class="col-sm-2">
-									5
-								</div>
-								<div class="col-sm-2">
-									10\5
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									P1
-								</div>
-								<div class="col-sm-2">
-									Front light
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									15
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									5
-								</div>
-								<div class="col-sm-2">
-									Blackout
-								</div>
-								<div class="col-sm-2">
-									10
-								</div>
-								<div class="col-sm-2">
-									3.5
-								</div>
-								<div class="col-sm-2">
-									&nbsp;
-								</div>
-								<div class="col-sm-2">
-									1.5
-								</div>
-							</div>
+						<div class="col-sm-2 column">
+							Cue
+						</div>
+						<div class="col-sm-2 column">
+							Description
+						</div>
+						<div class="col-sm-2 column">
+							Pg
+						</div>
+						<div class="col-sm-2 column">
+							Time
+						</div>
+						<div class="col-sm-2 column">
+							Follow
+						</div>
+						<div class="col-sm-2 column">
+							Link
 						</div>
 					</div>
-
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="row">
-								<div class="col-sm-12 column-header">
-									Format Details
-								</div>
-							</div>
+					<div class="row">
+						<div class="col-sm-2">
+							1
+						</div>
+						<div class="col-sm-2">
+							House Lights
+						</div>
+						<div class="col-sm-2">
+							1
+						</div>
+						<div class="col-sm-2">
+							3
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
 						</div>
 					</div>
-
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-3 column">
-								Cue
-							</div>
-
-							<div class="col-sm-9 format">
-								Any number (e.g. <span class="example">1, 1.5, 4.22</span>)
-							</div>
+					<div class="row">
+						<div class="col-sm-2">
+							1
 						</div>
+						<div class="col-sm-2">
+							House at half
+						</div>
+						<div class="col-sm-2">
 
+						</div>
+						<div class="col-sm-2">
+							5
+						</div>
+						<div class="col-sm-2">
+							10
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							1.5
+						</div>
+						<div class="col-sm-2">
+							Blackout
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							3/5F10
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							2
+						</div>
+						<div class="col-sm-2">
+							Top of show
+						</div>
+						<div class="col-sm-2">
+							1
+						</div>
+						<div class="col-sm-2">
+							5/10
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							3
+						</div>
+						<div class="col-sm-2">
+							Spooky look
+						</div>
+						<div class="col-sm-2">
+							5
+						</div>
+						<div class="col-sm-2">
+							10\5
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							P1
+						</div>
+						<div class="col-sm-2">
+							Front light
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							15
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							5
+						</div>
+						<div class="col-sm-2">
+							Blackout
+						</div>
+						<div class="col-sm-2">
+							10
+						</div>
+						<div class="col-sm-2">
+							3.5
+						</div>
+						<div class="col-sm-2">
+							&nbsp;
+						</div>
+						<div class="col-sm-2">
+							1.5
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="row">
+						<div class="col-sm-12 column-header">
+							Format Details
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Cue
+					</div>
+
+					<div class="col-sm-9 format">
+						Any number (e.g. <span class="example">1, 1.5, 4.22</span>)
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 note">
+						<span class="note">Note:</span> Rows without a Cue entry will be ignored
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 option">
+						<span class="option">Optional:</span> Part cues are defined by
+						<span class="example">P[part number]</span>
+						(e.g. <span class="example">P1</span>)
 						<div class="row">
 							<div class="col-sm-12 note">
-								<span class="note">Note:</span> Rows without a Cue entry will be ignored
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-12 option">
-								<span class="option">Optional:</span> Part cues are defined by
-								<span class="example">P[part number]</span>
-								(e.g. <span class="example">P1</span>)
+								<span class="note">Note:</span> Parts are assumed to belong to the
+								closest Cue number preceding them
+								<br />
+								Example:
 								<div class="row">
-									<div class="col-sm-12 note">
-										<span class="note">Note:</span> Parts are assumed to belong to the
-										closest Cue number preceding them
-										<br />
-										Example:
+									<div class="col-sm-3 example">
 										<div class="row">
-											<div class="col-sm-3 example">
-												<div class="row">
-													<div class="col-sm-3 column">
-														Cue
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-3">
-														1
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-3">
-														P2
-													</div>
-													<div class="col-sm-9">
-														(Cue 1 Part 2)
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-3">
-														P3
-													</div>
-													<div class="col-sm-9">
-														(Cue 1 Part 3)
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-3">
-														2
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-3">
-														P2
-													</div>
-													<div class="col-sm-9">
-														(Cue 2 Part 2)
-													</div>
-												</div>
+											<div class="col-sm-3 column">
+												Cue
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												1
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												P2
+											</div>
+											<div class="col-sm-9">
+												(Cue 1 Part 2)
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												P3
+											</div>
+											<div class="col-sm-9">
+												(Cue 1 Part 3)
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												2
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												P2
+											</div>
+											<div class="col-sm-9">
+												(Cue 2 Part 2)
 											</div>
 										</div>
 									</div>
@@ -302,103 +309,103 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
 
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-3 column">
-								Description
-							</div>
-
-							<div class="col-sm-9 format">
-								Any text. Must be less than 75 characters. Excess characters will be
-								truncated.
-							</div>
-						</div>
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Description
 					</div>
 
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-3 column">
-								Page <b>or</b> pg
-							</div>
+					<div class="col-sm-9 format">
+						Any text. Must be less than 75 characters. Excess characters will be
+						truncated.
+					</div>
+				</div>
+			</div>
 
-							<div class="col-sm-9 format">
-								Any text. This gets appended to the cue description. Total length of cue
-								description and Page must be less than 70 characters
-							</div>
-						</div>
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Page <b>or</b> pg
 					</div>
 
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-3 column">
-								Time
-							</div>
+					<div class="col-sm-9 format">
+						Any text. This gets appended to the cue description. Total length of cue
+						description and Page must be less than 70 characters
+					</div>
+				</div>
+			</div>
 
-							<div class="col-sm-9 format">
-								<span class="example">[time]; [up]/[down]; [up]\[down];</span>
-								 (e.g. <span class="example">3, 4/6, 5\10</span>)
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-12 note">
-								<span class="note">Note:</span> If a single number is specified, it will be
-								 used for both up and down times
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 option">
-								<span class="option">Optional:</span> You may also specify cue Follows
-								 in this column using the format
-								 <span class="example">[time]:F[follow time]</span>
-								  (e.g. <span class="example">4F10, 4/5F10</span>)
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 caution">
-								<span class="caution">Caution:</span>
-								This app will accept and output decimal times (e.g. 4.5) but only you
-								know if your console supports them. Tread lightly.
-							</div>
-						</div>
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Time
 					</div>
 
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-3 column">
-								Link
-							</div>
+					<div class="col-sm-9 format">
+						<span class="example">[time]; [up]/[down]; [up]\[down];</span>
+						 (e.g. <span class="example">3, 4/6, 5\10</span>)
+					</div>
+				</div>
 
-							<div class="col-sm-9 format">
-								Any number
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 caution">
-								<span class="caution">Caution:</span>
-								This app does not verify that the linked cue actually exists
-							</div>
-						</div>
+				<div class="row">
+					<div class="col-sm-12 note">
+						<span class="note">Note:</span> If a single number is specified, it will be
+						 used for both up and down times
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 option">
+						<span class="option">Optional:</span> You may also specify cue Follows
+						 in this column using the format
+						 <span class="example">[time]:F[follow time]</span>
+						  (e.g. <span class="example">4F10, 4/5F10</span>)
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 caution">
+						<span class="caution">Caution:</span>
+						This app will accept and output decimal times (e.g. 4.5) but only you
+						know if your console supports them. Tread lightly.
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Link
 					</div>
 
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-3 column">
-								Follow
-							</div>
+					<div class="col-sm-9 format">
+						Any number
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 caution">
+						<span class="caution">Caution:</span>
+						This app does not verify that the linked cue actually exists
+					</div>
+				</div>
+			</div>
 
-							<div class="col-sm-9 format">
-								Any number
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 note">
-								<span class="note">Note:</span>
-								 	Follows can also be specified in the Time column.
-									See Time column for more information
-							</div>
-						</div>
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Follow
+					</div>
+
+					<div class="col-sm-9 format">
+						Any number
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 note">
+						<span class="note">Note:</span>
+						 	Follows can also be specified in the Time column.
+							See Time column for more information
 					</div>
 				</div>
 			</div>
