@@ -81,7 +81,7 @@ See Time column for more information
 
 ##**Compile and run it yourself**
 There are no special instructions for building this project.
-Simply `run go build main.go` from the source directory.
+Simply run `go build main.go` from the source directory.
 
 By default, the application will listen on port 80.
 If you wish to change the default port, you can do so in main.go
