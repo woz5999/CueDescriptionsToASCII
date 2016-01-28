@@ -1,1 +1,1 @@
-docker build -t woz5999/descriptionstoascii:latest .
+docker build --no-cache -t woz5999/descriptionstoascii:latest .

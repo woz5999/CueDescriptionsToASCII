@@ -31,8 +31,7 @@ func (tmpl CueTemplate) Create(headers []string) (CueTemplate, error) {
 			tmpl.Mapping["time"] = i
 		case strings.ToLower(header) == "link":
 			tmpl.Mapping["link"] = i
-		case strings.ToLower(header) == "flags",
-			strings.ToLower(header) == "block":
+		case strings.ToLower(header) == "flags":
 			tmpl.Mapping["flags"] = i
 		case strings.ToLower(header) == "follow":
 			tmpl.Mapping["follow"] = i
