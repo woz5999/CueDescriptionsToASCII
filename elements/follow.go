@@ -1,14 +1,35 @@
 package elements
 
 import (
-	"errors"
+	"github.com/woz5999/CueDescriptionsToASCII/elements"
+	"github.com/woz5999/CueDescriptionsToASCII/validation"
 	"log"
 	"strings"
 )
 
-//CueNum ... cueNum struct
-type CueNum struct {
-	// TODO DECLARE PROPERTIES
+// Follow ... Follow struct
+type Follow struct {
+	value string
 }
 
-// TODO DECLARE METHODS
+// SetValue ... set the value for this element
+func (follow Follow) SetValue(value string) {
+	// strip extraneous spaces and format
+	value = strings.Replace(value, " ", "")
+}
+
+// Convert ... output ASCII for this element
+func (follow Follow) Convert() string {
+	ret := ""
+	if follow.Validate() {
+		ret = Element.Trim("Followon " + follow.value + "\r\n")
+	} else {
+		log.Println("Failed to validate '" + follow.value + "'")
+	}
+	return ret
+}
+
+// Validate ... validate the value against standard Section 10.3
+func (follow Follow) Validate() bool {
+	return validation.ValidateTime(delay.value)
+}
