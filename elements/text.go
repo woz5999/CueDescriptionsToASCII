@@ -10,8 +10,8 @@ type Text struct {
 }
 
 // SetValue ... set the value for this element
-func (text Text) SetValue(description Description, page Page, flags Flags) {
-	text.value = flags.Convert() + description.Convert() + page.Convert()
+func (text Text) SetValue(value string) {
+	text.value = value
 }
 
 // Convert ... output ASCII for this element

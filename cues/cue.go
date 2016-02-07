@@ -3,8 +3,6 @@ package cues
 import (
 	"errors"
 	"github.com/woz5999/CueDescriptionsToASCII/elements"
-	"log"
-	"strings"
 )
 
 //Cue ... cue struct
@@ -15,18 +13,18 @@ type Cue struct {
 
 //ConvertToASCII ... convert the specified cue to ASCII entry
 func (cue Cue) ConvertToASCII() (string, error) {
-	ret = ""
+	ret := ""
 	var err error
 
 	tmpl := cue.Template.Mapping
 
-	cueNum := Number{}
-	flags := Flags{}
-	follow := Follow{}
-	link := Link{}
-	page := Page{}
-	desc := Description{}
-	time := Time{}
+	cueNum := elements.Number{}
+	flags := elements.Flags{}
+	follow := elements.Follow{}
+	link := elements.Link{}
+	page := elements.Page{}
+	desc := elements.Description{}
+	time := elements.CueTime{}
 
 	cueNum.SetValue(cue.Record[tmpl["cue"]])
 	flags.SetValue(cue.Record[tmpl["flags"]])
@@ -36,11 +34,11 @@ func (cue Cue) ConvertToASCII() (string, error) {
 	desc.SetValue(cue.Record[tmpl["description"]])
 	time.SetValue(cue.Record[tmpl["time"]])
 
-	text := Text{}
-	text.SetValue(desc, page, flags)
+	text := elements.Text{}
+	text.SetValue(desc.Convert() + page.Convert() + flags.Convert())
 
 	if cueNum.Validate() {
-		elements := []iElement{
+		elements := []elements.CueElement{
 			cueNum,
 			time,
 			link,
@@ -55,7 +53,7 @@ func (cue Cue) ConvertToASCII() (string, error) {
 		}
 
 	} else {
-		err = "Invalid cue number '" + cue.Record[tmpl["cue"]] + "'"
+		err = errors.New("Invalid cue number '" + cue.Record[tmpl["cue"]] + "'")
 	}
 	return ret, err
 }
