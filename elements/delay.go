@@ -1,7 +1,6 @@
 package elements
 
 import (
-	"github.com/woz5999/CueDescriptionsToASCII/validation"
 	"log"
 	"strings"
 )
@@ -13,7 +12,7 @@ type Delay struct {
 
 // SetValue ... set the value for this element
 func (delay Delay) SetValue(value string) {
-	delay.value = strings.Replace(value, " ", "")
+	delay.value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... output ASCII for this element
@@ -29,5 +28,8 @@ func (delay Delay) Convert() string {
 
 // Validate ... validate the value against standard Section 7.7
 func (delay Delay) Validate() bool {
-	return validation.ValidateTime(delay.value)
+	time := Time{}
+	time.SetValue(delay.value)
+
+	return time.Validate()
 }

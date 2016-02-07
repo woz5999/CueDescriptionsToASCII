@@ -1,6 +1,7 @@
 package elements
 
 import (
+	"log"
 	"strings"
 )
 
@@ -11,7 +12,7 @@ type Page struct {
 
 // SetValue ... set the value for this element
 func (page Page) SetValue(value string) {
-	page.value = strings.Replace(value, " ", "")
+	page.value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... convert ASCII for this element

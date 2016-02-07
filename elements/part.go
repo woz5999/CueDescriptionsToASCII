@@ -13,14 +13,14 @@ type Part struct {
 
 // SetValue ... set the value for this element
 func (part Part) SetValue(value string) {
-	part.value = strings.Replace(value, " ", "")
+	part.value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... output ASCII for this element
 func (part Part) Convert() string {
 	ret := ""
 	if part.Validate() {
-		ret = Element.Trim("Part " + part.value)
+		ret = Trim("Part " + part.value)
 	} else {
 		log.Println("Failed to validate '" + part.value + "'")
 	}

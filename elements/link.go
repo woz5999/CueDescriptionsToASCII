@@ -13,14 +13,14 @@ type Link struct {
 
 // SetValue ... set the value for this element
 func (link Link) SetValue(value string) {
-	link.value = strings.Replace(value, " ", "")
+	link.value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... output ASCII for this element
 func (link Link) Convert() string {
 	ret := ""
 	if link.Validate() {
-		ret = Element.Trim("Link " + link.value + "\r\n")
+		ret = Trim("Link " + link.value + "\r\n")
 	} else {
 		log.Println("Failed to validate '" + link.value + "'")
 	}
@@ -32,7 +32,7 @@ func (link Link) Validate() bool {
 	ret := true
 
 	if !validation.ValidateInt(link.value) ||
-		!validation.ValidateCueNum(link.value, 0, 9) {
+		!validation.CheckRange(link.value, 0, 9) {
 		ret = false
 	}
 	return ret

@@ -1,7 +1,6 @@
 package elements
 
 import (
-	"github.com/woz5999/CueDescriptionsToASCII/validation"
 	"log"
 	"strings"
 )
@@ -13,13 +12,13 @@ type Flags struct {
 
 // SetValue ... set the value for this element
 func (flags Flags) SetValue(value string) {
-	flags.value = strings.ToUpper(strings.Replace(value, " ", ""))
+	flags.value = strings.ToUpper(strings.Replace(value, " ", "", -1))
 }
 
 // Convert ... output ASCII for this element
 func (flags Flags) Convert() string {
 	ret := ""
-	if flags.Validate(flags.value) {
+	if flags.Validate() {
 		ret = "Flags " + flags.value
 	} else {
 		log.Println("Failed to validate '" + flags.value + "'")

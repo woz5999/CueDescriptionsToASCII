@@ -1,7 +1,6 @@
 package elements
 
 import (
-	"github.com/woz5999/CueDescriptionsToASCII/validation"
 	"log"
 	"strings"
 )
@@ -14,14 +13,14 @@ type Follow struct {
 // SetValue ... set the value for this element
 func (follow Follow) SetValue(value string) {
 	// strip extraneous spaces and format
-	value = strings.Replace(value, " ", "")
+	value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... output ASCII for this element
 func (follow Follow) Convert() string {
 	ret := ""
 	if follow.Validate() {
-		ret = Element.Trim("Followon " + follow.value + "\r\n")
+		ret = Trim("Followon " + follow.value + "\r\n")
 	} else {
 		log.Println("Failed to validate '" + follow.value + "'")
 	}
@@ -30,5 +29,7 @@ func (follow Follow) Convert() string {
 
 // Validate ... validate the value against standard Section 10.3
 func (follow Follow) Validate() bool {
-	return validation.ValidateTime(delay.value)
+	time := Time{}
+	time.SetValue(follow.value)
+	return time.Validate()
 }

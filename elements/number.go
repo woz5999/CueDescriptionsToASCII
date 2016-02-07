@@ -14,10 +14,10 @@ type Number struct {
 // SetValue ... set the value for this element
 func (number Number) SetValue(value string) {
 	// strip extraneous spaces and format
-	value = strings.Replace(value, " ", "")
+	value = strings.Replace(value, " ", "", -1)
 	val, err := number.format(value)
 
-	if !err == nil {
+	if err != nil {
 		number.value = val
 	} else {
 		log.Println(err)
@@ -28,19 +28,43 @@ func (number Number) SetValue(value string) {
 func (number Number) Convert() string {
 	ret := ""
 	if number.Validate() {
-		ret = Element.Trim(number.value + "\r\n")
+		ret = Trim(number.value + "\r\n")
 	} else {
 		log.Println("Failed to validate '" + number.value + "'")
 	}
 	return ret
 }
 
-// Validate ... validate the value
+// Validate ... validate the value against standard Section 9.1
 func (number Number) Validate() bool {
-	return validation.ValidateCueNum(number.value)
+	// See standard Section 7.4
+	ret := true
+
+	if number.value == "" {
+		ret = false
+	} else {
+		// divide into whole numbers and tenths
+		n := strings.Split(number.value, ".")
+
+		if len(n) > 3 || len(n) < 0 {
+			ret = false
+		} else {
+			if validation.ValidateInt(n[0]) &&
+				validation.CheckRange(n[0], 0, 9999) {
+
+				if len(n) == 2 && (!validation.ValidateInt(n[1]) ||
+					!validation.CheckRange(n[1], 0, 9)) {
+					ret = false
+				}
+			} else {
+				ret = false
+			}
+		}
+	}
+	return ret
 }
 
-func format(cueNum string) (string, error) {
+func (number Number) format(cueNum string) (string, error) {
 	var ret string
 	var err error
 
@@ -52,19 +76,21 @@ func format(cueNum string) (string, error) {
 		var res []string
 
 		if strings.Contains(cueNum, "p") {
-			res := strings.Split(cueNum, "p")
+			res = strings.Split(cueNum, "p")
 		} else if strings.Contains(cueNum, "part") {
-			res := strings.Split(cueNum, "part")
+			res = strings.Split(cueNum, "part")
 		}
 
-		part := elements.part{}
+		part := Part{}
 		part.SetValue(res[1])
 
 		ret = part.Convert()
 	} else {
-		if Validate(cueNum) {
+		number.value = cueNum
+		if number.Validate() {
 			ret = "Cue " + cueNum
 		} else {
+			number.value = ""
 			log.Println("Failed to validate cue '" + cueNum + "'")
 		}
 	}
