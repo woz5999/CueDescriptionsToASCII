@@ -23,7 +23,7 @@ func (tmpl CueTemplate) Create(headers []string) (CueTemplate, error) {
 		case strings.ToLower(header) == "cue":
 			tmpl.Mapping["cue"] = i
 		case strings.ToLower(header) == "description":
-			tmpl.Mapping["text"] = i
+			tmpl.Mapping["description"] = i
 		case strings.ToLower(header) == "page",
 			strings.ToLower(header) == "pg":
 			tmpl.Mapping["page"] = i
@@ -31,8 +31,7 @@ func (tmpl CueTemplate) Create(headers []string) (CueTemplate, error) {
 			tmpl.Mapping["time"] = i
 		case strings.ToLower(header) == "link":
 			tmpl.Mapping["link"] = i
-		case strings.ToLower(header) == "flags",
-			strings.ToLower(header) == "block":
+		case strings.ToLower(header) == "flags":
 			tmpl.Mapping["flags"] = i
 		case strings.ToLower(header) == "follow":
 			tmpl.Mapping["follow"] = i

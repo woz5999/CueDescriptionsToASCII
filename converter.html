@@ -11,10 +11,11 @@
 			<div class="row">
 				<h1>Cue descriptions to ASCII</h1>
 				<p class="description">
-					This application is designed to convert a spreadsheet of light cue descriptions
-					into USITT ASCII for import into a lighting console. The resulting show file will
-					insert numbered cues, times, follows, and links. The provided cue description
-					will be appended to the console cue text description field.
+					This application is designed to convert a spreadsheet of
+					light cue descriptions into USITT ASCII for import into
+					a lighting console. The resulting show file will insert
+					numbered cues, times, follows, and links. The provided cue
+					description will be appended to the console cue label.
 				</p>
 			</div>
 		</div>
@@ -23,8 +24,9 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<p>
-							To convert your cue descriptions, please create a CSV export using your
-							preferred spreadsheeting application and upload it here.
+							To convert your cue descriptions, please create
+							a CSV export using your preferred spreadsheeting
+							application and upload it here.
 						</p>
 					</div>
 				</div>
@@ -53,13 +55,15 @@
 							<br/>
 							Column format specifications are below.
 							<br/>
-							You should clear your existing console cues before attempting to
-							 import a generated show; the generated file will not clear them for you.
+							You should clear your existing console cues before
+							attempting to import a generated show; the
+							generated file will not clear them for you.
 							<br/>
 							Because most
-							spreadsheet applications do not allow you to export multiple sheets into
-							 a single CSV file, users utilizing multiple sheets will need to upload each
-							  sheet individually.
+							spreadsheet applications do not allow you to
+							export multiple sheets into a single CSV file,
+							users utilizing multiple sheets will need to
+							upload each sheet individually.
 						</p>
 					</div>
 				</div>
@@ -81,11 +85,14 @@
 						<div class="col-sm-2 column">
 							Time
 						</div>
-						<div class="col-sm-2 column">
+						<div class="col-sm-1 column">
 							Follow
 						</div>
-						<div class="col-sm-2 column">
+						<div class="col-sm-1 column">
 							Link
+						</div>
+						<div class="col-sm-2 column">
+							Flags
 						</div>
 					</div>
 					<div class="row">
@@ -101,7 +108,10 @@
 						<div class="col-sm-2">
 							3
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
+							&nbsp;
+						</div>
+						<div class="col-sm-1">
 							&nbsp;
 						</div>
 						<div class="col-sm-2">
@@ -110,7 +120,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-2">
-							1
+							.5
 						</div>
 						<div class="col-sm-2">
 							House at half
@@ -121,8 +131,11 @@
 						<div class="col-sm-2">
 							5
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
 							10
+						</div>
+						<div class="col-sm-1">
+							&nbsp;
 						</div>
 						<div class="col-sm-2">
 							&nbsp;
@@ -141,11 +154,14 @@
 						<div class="col-sm-2">
 							3/5F10
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
+							&nbsp;
+						</div>
+						<div class="col-sm-1">
 							&nbsp;
 						</div>
 						<div class="col-sm-2">
-							&nbsp;
+							B
 						</div>
 					</div>
 					<div class="row">
@@ -161,7 +177,10 @@
 						<div class="col-sm-2">
 							5/10
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
+							&nbsp;
+						</div>
+						<div class="col-sm-1">
 							&nbsp;
 						</div>
 						<div class="col-sm-2">
@@ -173,15 +192,18 @@
 							3
 						</div>
 						<div class="col-sm-2">
-							Spooky look
+							&nbsp;
 						</div>
 						<div class="col-sm-2">
-							5
+							&nbsp;
 						</div>
 						<div class="col-sm-2">
-							10\5
+							&nbsp;
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
+							&nbsp;
+						</div>
+						<div class="col-sm-1">
 							&nbsp;
 						</div>
 						<div class="col-sm-2">
@@ -193,15 +215,18 @@
 							P1
 						</div>
 						<div class="col-sm-2">
-							Front light
+							&nbsp;
 						</div>
 						<div class="col-sm-2">
 							&nbsp;
 						</div>
 						<div class="col-sm-2">
-							15
+							15D3
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
+							&nbsp;
+						</div>
+						<div class="col-sm-1">
 							&nbsp;
 						</div>
 						<div class="col-sm-2">
@@ -221,11 +246,14 @@
 						<div class="col-sm-2">
 							3.5
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
 							&nbsp;
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
 							1.5
+						</div>
+						<div class="col-sm-2">
+							B
 						</div>
 					</div>
 				</div>
@@ -248,7 +276,8 @@
 					</div>
 
 					<div class="col-sm-9 format">
-						Any number (e.g. <span class="example">1, 1.5, 4.22</span>)
+						Any number (e.g. <span class="example">
+							1, 1.5, 4.22</span>)
 					</div>
 				</div>
 
@@ -260,13 +289,26 @@
 
 				<div class="row">
 					<div class="col-sm-12 option">
-						<span class="option">Optional:</span> Part cues are defined by
+						<span class="option">Optional:</span> Part cues are
+						defined by
 						<span class="example">P[part number]</span>
 						(e.g. <span class="example">P1</span>)
 						<div class="row">
 							<div class="col-sm-12 note">
-								<span class="note">Note:</span> Parts are assumed to belong to the
-								closest Cue number preceding them
+								<span class="note">Note:</span> Parts are
+								assumed to belong to the closest Cue number
+								preceding them.
+								<br />
+								<span class="caution">Caution:</span> When
+								specifying parts, the only allowed data is a
+								time for the part.
+								<br />
+								You cannot provide a description for the part
+								or the parent cue. You cannot provide a time
+								for the parent cue.
+								<br />
+								This is a limitation of the USITT ASCII
+								standard and cannot be avoided.
 								<br />
 								Example:
 								<div class="row">
@@ -320,13 +362,18 @@
 
 			<div class="col-sm-12">
 				<div class="row">
-					<div class="col-sm-3 column">
+					<div class="col-sm-2 column">
 						Description
 					</div>
 
 					<div class="col-sm-9 format">
-						Any text. Must be less than 75 characters. Excess characters will be
-						truncated.
+						Any text. The USITT ASCII standard sets a maximum
+						length of 75 for any give line. Characters  in excess
+						of this limit will be truncated.
+						<br />
+						<span class="caution">Caution:</span>
+						Specifying Page and/or Flags will reduce the maximum
+						description length
 					</div>
 				</div>
 			</div>
@@ -338,8 +385,19 @@
 					</div>
 
 					<div class="col-sm-9 format">
-						Any text. This gets appended to the cue description. Total length of cue
-						description and Page must be less than 70 characters
+						Any text. This gets appended to the cue description.
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-3 column">
+						Flags
+					</div>
+
+					<div class="col-sm-9 format">
+						Any text. This gets prepended to the cue description.
 					</div>
 				</div>
 			</div>
@@ -351,30 +409,40 @@
 					</div>
 
 					<div class="col-sm-9 format">
-						<span class="example">[time]; [up]/[down]; [up]\[down];</span>
-						 (e.g. <span class="example">3, 4/6, 5\10</span>)
+						<span class="example">
+							[time]; [up]/[down]; [up]\[down];</span>
+						 	(e.g. <span class="example">3, 4/6, 5\10</span>)
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-sm-12 note">
-						<span class="note">Note:</span> If a single number is specified, it will be
-						 used for both up and down times
+						<span class="note">Note:</span> If a single number is
+						specified, it will be used for both up and down times
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12 option">
-						<span class="option">Optional:</span> You may also specify cue Follows
-						 in this column using the format
+						<span class="option">Optional:</span> You may also
+						specify cue Follows in this column using the format
 						 <span class="example">[time]:F[follow time]</span>
 						  (e.g. <span class="example">4F10, 4/5F10</span>)
 					</div>
 				</div>
 				<div class="row">
+					<div class="col-sm-12 option">
+						<span class="option">Optional:</span> You may also
+						specify cue Delays in this column using the format
+						 <span class="example">[time]:D[delay time]</span>
+						  (e.g. <span class="example">4D10, 4/5D10,</span>)
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-sm-12 caution">
 						<span class="caution">Caution:</span>
-						This app will accept and output decimal times (e.g. 4.5) but only you
-						know if your console supports them. Tread lightly.
+						This app will accept and output decimal times
+						(e.g. 4.5) but only you know if your console supports
+						them. Tread lightly.
 					</div>
 				</div>
 			</div>
@@ -392,7 +460,8 @@
 				<div class="row">
 					<div class="col-sm-12 caution">
 						<span class="caution">Caution:</span>
-						This app does not verify that the linked cue actually exists
+						This app does not verify that the linked cue actually
+						exists
 					</div>
 				</div>
 			</div>
