@@ -3,6 +3,7 @@ package cues
 import (
 	"errors"
 	"github.com/woz5999/CueDescriptionsToASCII/elements"
+	"log"
 )
 
 //Cue ... cue struct
@@ -18,42 +19,51 @@ func (cue Cue) ConvertToASCII() (string, error) {
 
 	tmpl := cue.Template.Mapping
 
-	cueNum := elements.Number{}
-	flags := elements.Flags{}
-	follow := elements.Follow{}
-	link := elements.Link{}
-	page := elements.Page{}
-	desc := elements.Description{}
-	time := elements.CueTime{}
+	// eliminate some overhead and log noise by ignoring empty cue lines
+	if cue.Record[tmpl["cue"]] != "" {
+		log.Println("############## Parsing " + cue.Record[tmpl["cue"]])
 
-	cueNum.SetValue(cue.Record[tmpl["cue"]])
-	flags.SetValue(cue.Record[tmpl["flags"]])
-	follow.SetValue(cue.Record[tmpl["follow"]])
-	link.SetValue(cue.Record[tmpl["link"]])
-	page.SetValue(cue.Record[tmpl["page"]])
-	desc.SetValue(cue.Record[tmpl["description"]])
-	time.SetValue(cue.Record[tmpl["time"]])
+		cueNum := &elements.Number{}
+		flags := &elements.Flags{}
+		follow := &elements.Follow{}
+		link := &elements.Link{}
+		page := &elements.Page{}
+		desc := &elements.Description{}
+		time := &elements.CueTime{}
 
-	text := elements.Text{}
-	text.SetValue(desc.Convert() + page.Convert() + flags.Convert())
+		cueNum.SetValue(cue.Record[tmpl["cue"]])
+		flags.SetValue(cue.Record[tmpl["flags"]])
+		follow.SetValue(cue.Record[tmpl["follow"]])
+		link.SetValue(cue.Record[tmpl["link"]])
+		page.SetValue(cue.Record[tmpl["page"]])
+		desc.SetValue(cue.Record[tmpl["description"]])
+		time.SetValue(cue.Record[tmpl["time"]])
 
-	if cueNum.Validate() {
-		elements := []elements.CueElement{
-			cueNum,
-			time,
-			link,
-			follow,
-			text,
-		}
+		text := &elements.Text{}
+		text.SetValue(flags.Convert() + desc.Convert() + page.Convert())
 
-		for _, element := range elements {
-			if element.Validate() {
-				ret += element.Convert()
+		if cueNum.Validate() {
+			elements := []elements.CueElement{
+				cueNum,
+				time,
+				link,
+				follow,
+				text,
 			}
-		}
 
-	} else {
-		err = errors.New("Invalid cue number '" + cue.Record[tmpl["cue"]] + "'")
+			for _, element := range elements {
+				ascii := element.Convert()
+				if ascii != "" {
+					ret += ascii
+					log.Println(ascii)
+				}
+			}
+			ret += "\r\n"
+
+		} else {
+			log.Println("Invalid cue number '" + cue.Record[tmpl["cue"]] + "'")
+			err = errors.New("Invalid cue number '" + cue.Record[tmpl["cue"]] + "'")
+		}
 	}
 	return ret, err
 }

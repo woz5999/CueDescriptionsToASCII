@@ -12,17 +12,15 @@ type Part struct {
 }
 
 // SetValue ... set the value for this element
-func (part Part) SetValue(value string) {
+func (part *Part) SetValue(value string) {
 	part.value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... output ASCII for this element
 func (part Part) Convert() string {
 	ret := ""
-	if part.Validate() {
-		ret = Trim("Part " + part.value)
-	} else {
-		log.Println("Failed to validate '" + part.value + "'")
+	if part.value != "" && part.Validate() {
+		ret = Trim("Part "+part.value) + "\r\n"
 	}
 	return ret
 }
@@ -34,6 +32,10 @@ func (part Part) Validate() bool {
 	if !validation.ValidateInt(part.value) ||
 		!validation.CheckRange(part.value, 0, 99) {
 		ret = false
+	}
+
+	if ret != true {
+		log.Println("Failed to validate part '" + part.value + "'")
 	}
 	return ret
 }

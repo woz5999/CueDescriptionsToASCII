@@ -12,17 +12,15 @@ type Link struct {
 }
 
 // SetValue ... set the value for this element
-func (link Link) SetValue(value string) {
+func (link *Link) SetValue(value string) {
 	link.value = strings.Replace(value, " ", "", -1)
 }
 
 // Convert ... output ASCII for this element
 func (link Link) Convert() string {
 	ret := ""
-	if link.Validate() {
+	if link.value != "" && link.Validate() {
 		ret = Trim("Link " + link.value + "\r\n")
-	} else {
-		log.Println("Failed to validate '" + link.value + "'")
 	}
 	return ret
 }
@@ -34,6 +32,10 @@ func (link Link) Validate() bool {
 	if !validation.ValidateInt(link.value) ||
 		!validation.CheckRange(link.value, 0, 9) {
 		ret = false
+	}
+
+	if ret != true {
+		log.Println("Failed to validate link '" + link.value + "'")
 	}
 	return ret
 }

@@ -16,13 +16,10 @@ type Time struct {
 }
 
 // SetValue ... set the value for this element
-func (time Time) SetValue(value string) {
-	value = strings.ToLower(strings.Replace(value, " ", "", -1))
-	val := time.format(value)
+func (time *Time) SetValue(value string) {
+	val := strings.ToLower(strings.Replace(value, " ", "", -1))
 
-	if val {
-		time.value = value
-	} else {
+	if !time.format(val) {
 		log.Println("Unable to format time " + value)
 	}
 }
@@ -30,15 +27,14 @@ func (time Time) SetValue(value string) {
 // Convert ... output ASCII for this element
 func (time Time) Convert() string {
 	ret := ""
-	if time.Validate() {
+
+	if time.value != "" && time.Validate() {
 		ret = time.combineTime()
 
 		if time.delay != (Delay{}) && time.delay.Validate() {
-			ret += " " + time.delay.Convert()
+			ret += time.delay.Convert()
 		}
 		ret += "\r\n"
-	} else {
-		log.Println("Failed to validate '" + time.value + "'")
 	}
 	return ret
 }
@@ -61,19 +57,25 @@ func (time Time) Validate() bool {
 	if ret == true && time.delay != (Delay{}) {
 		ret = time.delay.Validate()
 	}
+
+	if ret != true {
+		log.Println("Failed to validate time '" + time.value + "'")
+	}
 	return ret
 }
 
-func (time Time) format(value string) bool {
+func (time *Time) format(value string) bool {
 	ret := true
+
+	time.value = value
 
 	if strings.Contains(value, "d") {
 		d := strings.Split(value, "d")
 		value = d[0]
 
-		delay := Delay{}
+		delay := &Delay{}
 		delay.SetValue(d[1])
-		time.delay = delay
+		time.delay = *delay
 	}
 
 	// divide into hours, minutes, seconds
@@ -85,42 +87,42 @@ func (time Time) format(value string) bool {
 	} else {
 		switch l {
 		case 1:
-			s := Seconds{}
+			s := &Seconds{}
 			s.SetValue(t[0])
 
 			if s.Validate() {
-				time.seconds = s
+				time.seconds = *s
 			} else {
-				log.Println("Failed to validate seconds " + s.Convert())
+				log.Println("Failed to validate seconds '" + s.value + "'")
 			}
 		case 2:
-			m := Minutes{}
-			s := Seconds{}
+			m := &Minutes{}
+			s := &Seconds{}
 			m.SetValue(t[0])
 			s.SetValue(t[1])
 
 			if m.Validate() && s.Validate() {
-				time.minutes = m
-				time.seconds = s
+				time.minutes = *m
+				time.seconds = *s
 			} else {
-				log.Println("Failed to validates minutes:seconds: " +
-					m.Convert() + ":" + s.Convert())
+				log.Println("Failed to validates minutes:seconds: '" +
+					m.value + ":" + s.value + "'")
 			}
 		case 3:
-			h := Hours{}
-			m := Minutes{}
-			s := Seconds{}
+			h := &Hours{}
+			m := &Minutes{}
+			s := &Seconds{}
 			h.SetValue(t[0])
 			m.SetValue(t[1])
 			s.SetValue(t[2])
 
 			if h.Validate() && m.Validate() && s.Validate() {
-				time.hours = h
-				time.minutes = m
-				time.seconds = s
+				time.hours = *h
+				time.minutes = *m
+				time.seconds = *s
 			} else {
-				log.Println("Failed to validates hours:minutes:seconds: " +
-					h.Convert() + ":" + m.Convert() + ":" + s.Convert())
+				log.Println("Failed to validates hours:minutes:seconds: '" +
+					h.value + ":" + m.value + ":" + s.value + "'")
 			}
 		}
 	}
@@ -152,7 +154,7 @@ type Hours struct {
 }
 
 // SetValue ... set the value for this element
-func (hours Hours) SetValue(value string) {
+func (hours *Hours) SetValue(value string) {
 	hours.value = strings.ToLower(strings.Replace(value, " ", "", -1))
 }
 
@@ -162,7 +164,7 @@ func (hours Hours) Convert() string {
 	if hours.Validate() {
 		ret = hours.value
 	} else {
-		log.Println("Failed to validate '" + hours.value + "'")
+		log.Println("Failed to validate hours '" + hours.value + "'")
 	}
 	return ret
 }
@@ -183,7 +185,7 @@ type Minutes struct {
 }
 
 // SetValue ... set the value for this element
-func (minutes Minutes) SetValue(value string) {
+func (minutes *Minutes) SetValue(value string) {
 	minutes.value = strings.ToLower(strings.Replace(value, " ", "", -1))
 }
 
@@ -193,7 +195,7 @@ func (minutes Minutes) Convert() string {
 	if minutes.Validate() {
 		ret = minutes.value
 	} else {
-		log.Println("Failed to validate '" + minutes.value + "'")
+		log.Println("Failed to validate minutes '" + minutes.value + "'")
 	}
 	return ret
 }
@@ -214,7 +216,7 @@ type Seconds struct {
 }
 
 // SetValue ... set the value for this element
-func (seconds Seconds) SetValue(value string) {
+func (seconds *Seconds) SetValue(value string) {
 	seconds.value = strings.ToLower(strings.Replace(value, " ", "", -1))
 }
 
@@ -224,7 +226,7 @@ func (seconds Seconds) Convert() string {
 	if seconds.Validate() {
 		ret = seconds.value
 	} else {
-		log.Println("Failed to validate '" + seconds.value + "'")
+		log.Println("Failed to validate seconds '" + seconds.value + "'")
 	}
 	return ret
 }
