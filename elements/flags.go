@@ -19,7 +19,7 @@ func (flags *Flags) SetValue(value string) {
 func (flags Flags) Convert() string {
 	ret := ""
 	if flags.value != "" && flags.Validate() {
-		ret = " Flags: " + flags.value + " "
+		ret = flags.value + ": "
 	}
 	return ret
 }
