@@ -119,12 +119,48 @@ func writeCues(
         ctx context.Context) (string, error) {
 	var err error
 
-	//convert filename to output filename
-	filenameSplit := strings.Split(filename, ".")
-	filenameOut := filenameSplit[0] + ".asc"
+    fileURL := ""
 
-	log.Println("Writing ascii file " + filenameOut)
-	err = ioutil.WriteFile(filenameOut, []byte(output), 0644)
+    // get default bucket name
+    bucket, err := file.DefaultBucketName(ctx)
+    if err == nil {
+        //convert filename to output filename
+    	filenameSplit := strings.Split(filename, ".")
+    	filenameOut := filenameSplit[0] + ".asc"
+        fileURL = "http://" + bucket + ".storage.googleapis.com/" + filenameOut
 
-	return filenameOut, err
+        fmt.Println("Writing ascii file " + filenameOut)
+        log.Infof(ctx, "Writing ascii file " + bucket + ": " + filenameOut)
+
+        // create storage client
+        client, err := storage.NewClient(ctx)
+    	if err == nil {
+        	defer client.Close()
+
+            // get bucket
+            b := client.Bucket(bucket)
+
+            wc := b.Object(filenameOut).NewWriter(ctx)
+            wc.ContentType = "text/plain"
+
+            _, err := wc.Write([]byte(output))
+            if err == nil {
+                err := wc.Close();
+                if err != nil {
+                    log.Errorf(ctx, "Unable to close bucket " + bucket +
+                        " " + err.Error())
+                }
+            } else {
+                log.Errorf(ctx, "Unable to write data to bucket " + bucket +
+                    " " + err.Error())
+            }
+        } else {
+    		log.Errorf(ctx, "failed to create client: " + err.Error())
+    	}
+    } else {
+        log.Errorf(ctx, "Failed to get default GCS bucket name: " +
+            err.Error())
+    }
+
+	return fileURL, err
 }

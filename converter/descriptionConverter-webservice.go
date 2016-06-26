@@ -50,10 +50,10 @@ func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 		return
 	}
 
-	fmt.Println(reqInfo+" Response: ", http.StatusOK)
-	w.Header().Set("Content-Disposition", "attachment; filename=\""+filename+"\"")
-	http.ServeFile(w, req, filename)
+    log.Infof(ctx, reqInfo+" Response: ", http.StatusMovedPermanently)
+	fmt.Println(reqInfo+" Response: ", http.StatusMovedPermanently)
 
-	os.Remove(filename)
+    http.Redirect(w, req, filename, 301)
+
 	return
 }
