@@ -6,3 +6,6 @@ main
 README.md
 test.sh
 docs
+app.yml
+.idea*
+*.iml

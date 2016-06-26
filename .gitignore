@@ -6,3 +6,5 @@ CueDescriptionsToASCII
 main
 
 test.csv
+
+.idea*
