@@ -24,18 +24,21 @@ func (dc DescriptionConverter) ConvertDescriptions(
 	file multipart.File, filename string) (string, error) {
 
 	var err error
-	log.Println("Getting cues")
 	cues, err := getCues(file)
+	fmt.Println("Getting cues")
+	log.Infof(ctx, "Getting cues")
 	if err != nil {
 		return "", err
 	}
-	log.Println("Converting cues")
+	fmt.Println("Converting cues")
+	log.Infof(ctx, "Converting cues")
 	ascii, err := cues.ConvertCues()
 	if err != nil {
 		return "", err
 	}
-	log.Println("Writing cues")
 	filename, err = writeCues(ascii, filename)
+	fmt.Println("Writing cues")
+	log.Infof(ctx, "Writing cues")
 	if err != nil {
 		return "", err
 	}
@@ -76,10 +79,12 @@ func getCues(file multipart.File) (cues.CueList, error) {
 						tmpl, err = tmpl.Create(record)
 
 						if err != nil {
-							log.Println("Error creating cue template: " + err.Error())
+							fmt.Println("Error creating cue template: " + err.Error())
+							log.Infof(ctx, "Error creating cue template: " + err.Error())
 							break
 						} else {
-							log.Println("Cue template created")
+							fmt.Println("Cue template created")
+							log.Infof(ctx, "Cue template created")
 							bTmplSet = true
 						}
 					}

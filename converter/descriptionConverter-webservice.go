@@ -21,15 +21,19 @@ func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 	reqInfo := req.RemoteAddr + " " + req.Method
 
 	if req.Method != "POST" {
-		log.Println(reqInfo+" Response: ", http.StatusMethodNotAllowed,
+        log.Errorf(ctx, reqInfo+" Response: ", http.StatusMethodNotAllowed,
+			" "+err.Error())
+		fmt.Println(reqInfo+" Response: ", http.StatusMethodNotAllowed,
 			" "+err.Error())
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
 
 	file, handler, err := req.FormFile("uploadfile")
 	if err != nil {
-		log.Println(reqInfo+" Response: ", http.StatusBadRequest,
-			" "+err.Error())
+        log.Errorf(ctx, reqInfo+" Response: ", http.StatusBadRequest,
+            " "+err.Error())
+		fmt.Println(reqInfo+" Response: ", http.StatusBadRequest,
+		    " "+err.Error())
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -37,8 +41,10 @@ func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 	//do file conversion
 	filename, err := dc.ConvertDescriptions(file, handler.Filename)
 	if err != nil {
-		log.Println(reqInfo+" Response: ", http.StatusInternalServerError,
-			" "+err.Error())
+        log.Errorf(ctx, reqInfo+" Response: ", http.StatusInternalServerError,
+            " "+err.Error())
+		fmt.Println(reqInfo+" Response: ", http.StatusInternalServerError,
+		          " "+err.Error())
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
