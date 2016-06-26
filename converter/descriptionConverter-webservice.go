@@ -2,9 +2,9 @@ package converter
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"os"
+    "google.golang.org/appengine"
+    "google.golang.org/appengine/log"
 )
 
 //GetPath ... return the url path for this web service

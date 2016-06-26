@@ -2,13 +2,18 @@ package converter
 
 import (
 	"encoding/csv"
-	"errors"
-	"github.com/woz5999/CueDescriptionsToASCII/cues"
+    "errors"
+    "fmt"
+	"cues"
 	"io"
-	"io/ioutil"
-	"log"
 	"mime/multipart"
 	"strings"
+
+    "golang.org/x/net/context"
+
+    "google.golang.org/appengine/file"
+    "google.golang.org/appengine/log"
+    "google.golang.org/cloud/storage"
 )
 
 //DescriptionConverter ... detault constructor
