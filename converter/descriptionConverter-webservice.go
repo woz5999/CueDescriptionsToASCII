@@ -15,6 +15,7 @@ func (dc DescriptionConverter) GetPath() string {
 //WebPost ... handler for POST event
 func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 	req *http.Request) {
+    ctx := appengine.NewContext(req)
 	defer req.Body.Close()
 	var err error
 
@@ -39,7 +40,7 @@ func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 	}
 
 	//do file conversion
-	filename, err := dc.ConvertDescriptions(file, handler.Filename)
+	filename, err := dc.ConvertDescriptions(file, handler.Filename, ctx)
 	if err != nil {
         log.Errorf(ctx, reqInfo+" Response: ", http.StatusInternalServerError,
             " "+err.Error())

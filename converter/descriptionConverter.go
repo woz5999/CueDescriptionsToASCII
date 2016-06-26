@@ -21,12 +21,14 @@ type DescriptionConverter struct{}
 
 //ConvertDescriptions ... Main method
 func (dc DescriptionConverter) ConvertDescriptions(
-	file multipart.File, filename string) (string, error) {
+	file multipart.File,
+    filename string,
+    ctx context.Context) (string, error) {
 
 	var err error
-	cues, err := getCues(file)
 	fmt.Println("Getting cues")
 	log.Infof(ctx, "Getting cues")
+	cues, err := getCues(file, ctx)
 	if err != nil {
 		return "", err
 	}
@@ -36,9 +38,9 @@ func (dc DescriptionConverter) ConvertDescriptions(
 	if err != nil {
 		return "", err
 	}
-	filename, err = writeCues(ascii, filename)
 	fmt.Println("Writing cues")
 	log.Infof(ctx, "Writing cues")
+	filename, err = writeCues(ascii, filename, ctx)
 	if err != nil {
 		return "", err
 	}
@@ -46,7 +48,7 @@ func (dc DescriptionConverter) ConvertDescriptions(
 	return filename, err
 }
 
-func getCues(file multipart.File) (cues.CueList, error) {
+func getCues(file multipart.File, ctx context.Context) (cues.CueList, error) {
 	var err error
 	cueList := cues.CueList{}
 
@@ -111,7 +113,10 @@ func getCues(file multipart.File) (cues.CueList, error) {
 	return cueList, err
 }
 
-func writeCues(output string, filename string) (string, error) {
+func writeCues(
+        output string,
+        filename string,
+        ctx context.Context) (string, error) {
 	var err error
 
 	//convert filename to output filename
