@@ -1,7 +1,7 @@
 runtime: go
 api_version: go1
 version: v1
-application: cue-converter-1352
+application: cue-converter
 
 handlers:
 - url: /converter
