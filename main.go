@@ -7,17 +7,22 @@ import (
 	"net/http"
 )
 
+// app engine wrapper
+func init() {
+    main()
+}
+
 // documentation for csv is at http://golang.org/pkg/encoding/csv/
 func main() {
 	dc := converter.DescriptionConverter{}
-	port := ":80"
+	// port := ":8080"
 
 	http.HandleFunc(dc.GetPath(), dc.WebPost)
 	http.HandleFunc("/", home)
 	http.HandleFunc("/style.css", style)
 
-	fmt.Println("Server started on localhost" + port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	// fmt.Println("Server started on localhost" + port)
+	// log.Fatal(http.ListenAndServe(port, nil))
 }
 
 func home(w http.ResponseWriter,
