@@ -1,7 +1,7 @@
 package elements
 
 import (
-	"github.com/woz5999/CueDescriptionsToASCII/validation"
+	"validation"
 	"log"
 	"strings"
 )

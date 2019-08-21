@@ -1,4 +1,4 @@
-# [Cue descriptions to ASCII](http://52.27.90.205:8000)
+#[Cue descriptions to ASCII](https://cue-converter.appspot.com/)
 
 This application is designed to convert a spreadsheet of  light cue descriptions into
 USITT ASCII for import into a lighting console. The resulting show file will insert

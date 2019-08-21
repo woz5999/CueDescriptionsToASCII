@@ -1,9 +1,19 @@
 runtime: go
 api_version: go1
+version: v1
+application: cue-converter
 
 handlers:
-- url: /.*
+- url: /converter
   script: _go_app
+- url: /
+  static_files: converter.html
+  upload: converter.html
+  application_readable: true
+- url: /(.*\.(html|css))$
+  static_files: \1
+  upload: .*\.(html|css)
+  application_readable: true
 
 skip_files:
   - .*\.md
