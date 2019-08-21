@@ -18,7 +18,8 @@ upload each sheet individually.
 
 ## **Example spreadsheet**
 
-##### Column format specifications are below.
+### Column format specification
+
 Cue | Description | Pg | Time | Follow | Link
 --- |---           |--- |---     |--- |---
 .5  | House Lights | 1  | 3      |    |
@@ -27,7 +28,7 @@ Cue | Description | Pg | Time | Follow | Link
 2   | Top of show  | 1  | 5/10   |    |
 3   | Spooky look  | 5  | 10\5   |    |
 P1  | Front light  |    | 15     |    |
-5   | Blackout     | 10 | 3.5 	 |    | 1.5
+5   | Blackout     | 10 | 3.5    |    | 1.5
 
 ## **Format Details**
 
@@ -45,7 +46,7 @@ Part cues are defined by **P\[part number\]** (e.g. `P1`)
 
 **Note:** Parts are assumed to belong to the closest Cue number preceding them
 
-#####**Part cue example:**
+##### **Part cue example:**
 
 Cue| _
 ---|---
