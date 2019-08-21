@@ -13,3 +13,13 @@ ifneq ($(MAKECMDGOALS), linux)
 endif
 endif
 	GOOS=$(MAKECMDGOALS) GOARCH=amd64 CGO_ENABLED=0 go build -o ./$(REPOSITORY)
+
+deploy:
+	gcloud config set project cue-converter
+	gcloud app deploy --quiet app.yaml
+
+run: all
+	docker rm -f converter || true
+	docker run -d -p 8080:8080 --name converter woz5999/cuedescriptionstoascii
+	@echo Access app on http://localhost:8080
+	docker logs converter -f
