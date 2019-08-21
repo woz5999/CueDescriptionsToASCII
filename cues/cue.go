@@ -2,7 +2,7 @@ package cues
 
 import (
 	"errors"
-	"elements"
+	"github.com/woz5999/CueDescriptionsToASCII/elements"
 	"log"
 )
 
