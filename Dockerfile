@@ -1,4 +1,4 @@
-FROM golang:1.9 as build
+FROM golang:1.12 as build
 WORKDIR $GOPATH/src/github.com/woz5999/CueDescriptionsToASCII
 COPY ./ ./
 ARG VERSION
