@@ -1,0 +1,11 @@
+.*\.md
+.*\.sh
+^\..*
+*.csv
+Dockerfile
+Gopkg\.*
+LICENSE
+Makefile
+^cuedescriptionstoascii$
+^vendor$
+*.pdf
