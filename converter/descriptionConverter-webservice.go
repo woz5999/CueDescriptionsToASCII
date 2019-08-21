@@ -1,10 +1,12 @@
 package converter
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"net/http"
-	"os"
+	"strings"
+	"time"
 )
 
 //GetPath ... return the url path for this web service
@@ -34,8 +36,7 @@ func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 		return
 	}
 
-	//do file conversion
-	filename, err := dc.ConvertDescriptions(file, handler.Filename)
+	output, err := dc.ConvertDescriptions(file)
 	if err != nil {
 		log.Println(reqInfo+" Response: ", http.StatusInternalServerError,
 			" "+err.Error())
@@ -43,10 +44,12 @@ func (dc DescriptionConverter) WebPost(w http.ResponseWriter,
 		return
 	}
 
+	// update the file extension
+	filename := strings.Split(handler.Filename, ".")[0] + ".asc"
+
 	fmt.Println(reqInfo+" Response: ", http.StatusOK)
 	w.Header().Set("Content-Disposition", "attachment; filename=\""+filename+"\"")
-	http.ServeFile(w, req, filename)
+	content := bytes.NewReader([]byte(output))
 
-	os.Remove(filename)
-	return
+	http.ServeContent(w, req, filename, time.Now(), content)
 }

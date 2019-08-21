@@ -4,7 +4,6 @@ import (
 	"encoding/csv"
 	"errors"
 	"io"
-	"io/ioutil"
 	"log"
 	"mime/multipart"
 	"net/http"
@@ -22,8 +21,7 @@ func init() {
 type DescriptionConverter struct{}
 
 //ConvertDescriptions ... Main method
-func (dc DescriptionConverter) ConvertDescriptions(
-	file multipart.File, filename string) (string, error) {
+func (dc DescriptionConverter) ConvertDescriptions(file multipart.File) (string, error) {
 
 	var err error
 	log.Println("Getting cues")
@@ -32,17 +30,7 @@ func (dc DescriptionConverter) ConvertDescriptions(
 		return "", err
 	}
 	log.Println("Converting cues")
-	ascii, err := cues.ConvertCues()
-	if err != nil {
-		return "", err
-	}
-	log.Println("Writing cues")
-	filename, err = writeCues(ascii, filename)
-	if err != nil {
-		return "", err
-	}
-
-	return filename, err
+	return cues.ConvertCues()
 }
 
 func getCues(file multipart.File) (cues.CueList, error) {
@@ -106,17 +94,4 @@ func getCues(file multipart.File) (cues.CueList, error) {
 	}
 
 	return cueList, err
-}
-
-func writeCues(output string, filename string) (string, error) {
-	var err error
-
-	//convert filename to output filename
-	filenameSplit := strings.Split(filename, ".")
-	filenameOut := filenameSplit[0] + ".asc"
-
-	log.Println("Writing ascii file " + filenameOut)
-	err = ioutil.WriteFile(filenameOut, []byte(output), 0644)
-
-	return filenameOut, err
 }
