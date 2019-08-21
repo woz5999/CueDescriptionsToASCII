@@ -3,13 +3,20 @@ package converter
 import (
 	"encoding/csv"
 	"errors"
-	"github.com/woz5999/CueDescriptionsToASCII/cues"
 	"io"
 	"io/ioutil"
 	"log"
 	"mime/multipart"
+	"net/http"
 	"strings"
+
+	"github.com/woz5999/CueDescriptionsToASCII/cues"
 )
+
+func init() {
+	dc := DescriptionConverter{}
+	http.HandleFunc(dc.GetPath(), dc.WebPost)
+}
 
 //DescriptionConverter ... detault constructor
 type DescriptionConverter struct{}

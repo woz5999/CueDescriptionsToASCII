@@ -4,4 +4,14 @@ api_version: go1
 handlers:
 - url: /.*
   script: _go_app
-application: cue-converter
+
+skip_files:
+  - .*\.md
+  - .*\.sh
+  - ^\..*
+  - Dockerfile
+  - Gopkg\.*
+  - LICENSE
+  - Makefile
+  - ^cuedescriptionstoascii$
+  - ^vendor$
